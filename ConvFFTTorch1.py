@@ -75,7 +75,8 @@ class conv_fft_function(torch.autograd.Function):
             #for example, if you only want even size fft
             #if padded_size[i] & 1:
             #    padded_size[i] = padded_size[i] + 1            
-            padded_size[i] = padded_size[i] + 31 & ~31
+            if padding!='roll':       
+                padded_size[i] = padded_size[i] + 31 & ~31
 
             if padding=='valid':
                 offset = (min(kernel_size[i], input_size[i]) - 1) // 2
